@@ -35,7 +35,7 @@ enum Media: CaseIterable {
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let musicPathUrl = Media.backgroundMusic.choosedUrl
-    var backgroundMusicPlayer: AVAudioPlayer?
+    static var backgroundMusicPlayer: AVAudioPlayer?
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -53,11 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate{
     fileprivate func setupBackgroundMusic(){
         do {
-            backgroundMusicPlayer = try AVAudioPlayer(contentsOf: musicPathUrl)
-            backgroundMusicPlayer?.numberOfLoops = Int(MAX_INPUT)
+            AppDelegate.backgroundMusicPlayer = try AVAudioPlayer(contentsOf: musicPathUrl)
+            AppDelegate.backgroundMusicPlayer?.numberOfLoops = Int(MAX_INPUT)
         } catch {
             print("Failed to play music: \(error.localizedDescription)")
         }
-        backgroundMusicPlayer?.play()
+        AppDelegate.backgroundMusicPlayer?.play()
     }
 }

@@ -19,9 +19,14 @@ class ProjectIntroductionViewController: UIViewController {
     }
 }
 
-
 extension ProjectIntroductionViewController: ProjectIntroductionViewDelegate{
-    func goToHOCWebsite(sender: UIButton, destinationNavivc: UINavigationController) {
+    func goToHOCVideo(sender: UIButton, url: URL) {
+        let naviVC = UINavigationController.init(rootViewController: WebViewController.init(url: url))
+        present(naviVC, animated: true)
+    }
+    
+    func goToWebsite(sender: UIButton, destinationNavivc: UINavigationController) {
         present(destinationNavivc, animated: true, completion: nil)
     }
+    
 }

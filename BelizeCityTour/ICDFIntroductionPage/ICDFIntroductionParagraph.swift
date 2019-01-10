@@ -9,8 +9,8 @@
 import Foundation
 import UIKit
 class ICDFIntrodutionParagraph{
-    let paragraphText: String, image: UIImage, upperImgColor: UIColor, lowerImgColor: UIColor, upperBackgroundColor: UIColor, lowerBackgroundColor: UIColor, textColor: UIColor
-    init(paragraphText: String, image: UIImage, upperImgColor: UIColor, lowerImgColor: UIColor, upperBackgroundColor: UIColor, lowerBackgroundColor: UIColor, textColor: UIColor) {
+    let paragraphText: String, image: UIImage?, upperImgColor: UIColor, lowerImgColor: UIColor, upperBackgroundColor: UIColor, lowerBackgroundColor: UIColor, textColor: UIColor
+    init(paragraphText: String, image: UIImage?, upperImgColor: UIColor, lowerImgColor: UIColor, upperBackgroundColor: UIColor, lowerBackgroundColor: UIColor, textColor: UIColor) {
         self.paragraphText = paragraphText
         self.image = image
         self.upperImgColor = upperImgColor
@@ -21,13 +21,12 @@ class ICDFIntrodutionParagraph{
     }
     
     static func getAllParagraphs() -> ([ICDFIntrodutionParagraph]){
-        guard let firstImg = UIImage(named: "icdfLogo"),
-            let secondImg = UIImage(named: "SupremeCourt2"),
-            let thirdImg = UIImage(named: "Yarborough4"),
-            let forthImg = UIImage(named: "Yarborough6")
+        guard let secondImg = UIImage(named: "Project1"),
+            let thirdImg = UIImage(named: "Project2"),
+            let forthImg = UIImage(named: "Project3")
             else {return []}
         
-        let firstParagraph = ICDFIntrodutionParagraph.init(paragraphText: ICDFINtroductionText.firstParagraph.rawValue, image: firstImg , upperImgColor: UIColor.clear, lowerImgColor: UIColor.clear, upperBackgroundColor: UIColor.white, lowerBackgroundColor: UIColor.white, textColor: UIColor.introductionTextColor)
+        let firstParagraph = ICDFIntrodutionParagraph.init(paragraphText: ICDFINtroductionText.firstParagraph.rawValue, image: nil, upperImgColor: UIColor.clear, lowerImgColor: UIColor.clear, upperBackgroundColor: UIColor.white, lowerBackgroundColor: UIColor.white, textColor: UIColor.introductionTextColor)
         let secondParagraph = ICDFIntrodutionParagraph.init(paragraphText: ICDFINtroductionText.secondParagraph.rawValue, image: secondImg , upperImgColor: UIColor.appleGreenBackgroundColor, lowerImgColor: UIColor.white, upperBackgroundColor: UIColor.white, lowerBackgroundColor: UIColor.appleGreenBackgroundColor, textColor: UIColor.white)
         let thirdParagraph = ICDFIntrodutionParagraph.init(paragraphText: ICDFINtroductionText.thirdParagraph.rawValue, image: thirdImg , upperImgColor: UIColor.deepGreenBackgroundColor, lowerImgColor: UIColor.appleGreenBackgroundColor, upperBackgroundColor: UIColor.appleGreenBackgroundColor, lowerBackgroundColor: UIColor.deepGreenBackgroundColor, textColor: UIColor.white)
         let forthParagraph = ICDFIntrodutionParagraph.init(paragraphText: ICDFINtroductionText.forthParagraph.rawValue, image: forthImg , upperImgColor: UIColor.blueBackgroundColor, lowerImgColor: UIColor.deepGreenBackgroundColor, upperBackgroundColor: UIColor.deepGreenBackgroundColor, lowerBackgroundColor: UIColor.blueBackgroundColor, textColor: UIColor.white)

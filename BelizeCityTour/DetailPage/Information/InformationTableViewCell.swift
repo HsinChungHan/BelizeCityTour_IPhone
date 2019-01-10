@@ -50,8 +50,8 @@ class InformationTableViewCell: BasicTableViewCell {
             InformationView.init(image: UIImage(named: ImgName.type.rawValue)!, title: TitleName.type.rawValue, subTitle: place.type, isWebsite: false),
             InformationView.init(image: UIImage(named: ImgName.location.rawValue)!, title: TitleName.location.rawValue, subTitle: place.address, isWebsite: false),
             InformationView.init(image: UIImage(named: ImgName.Phone.rawValue)!, title: TitleName.phone.rawValue, subTitle: place.phone, isWebsite: false),
-            InformationView.init(image: UIImage(named: ImgName.Website.rawValue)!, title: TitleName.website.rawValue, subTitle: place.website, isWebsite: true),
-            webView
+            //            InformationView.init(image: UIImage(named: ImgName.Website.rawValue)!, title: TitleName.website.rawValue, subTitle: place.website, isWebsite: true),
+            //            webView
         ]
         
         for (index,view) in informationViews.enumerated(){
@@ -59,32 +59,21 @@ class InformationTableViewCell: BasicTableViewCell {
             if let lastView = lastView{topAnchor = lastView.bottomAnchor
             }else{topAnchor = self.topAnchor}
             
-            if index == informationViews.count - 1{
-                bottomAnchor = nil
-                height = 0
-            }
+            //            if index == informationViews.count - 1{
+            //                bottomAnchor = nil
+            //                height = 0
+            //            }
             
             view.anchor(top: topAnchor, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, topPadding: 10, bottomPadding: 0, leftPadding: 10, rightPadding: 10, width: 0, height: height)
             lastView = view
         }
     }
     
-    public func setupWebView(url: URL){
-        webView.loadRequest(URLRequest(url: url))
-        webView.layoutIfNeeded()
-        webView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        DispatchQueue.global().async {[weak self] in
-//            self?.webView.loadRequest(URLRequest(url: url))
-//            DispatchQueue.main.async {[weak self] in
-//                self?.webView.layoutIfNeeded()
-//                self?.webView.bottomAnchor.constraint(equalTo: (self?.bottomAnchor)!).isActive = true
-//            }
-//
-//        }
-        
-        
-        
-    }
+    //    public func setupWebView(url: URL){
+    //        webView.loadRequest(URLRequest(url: url))
+    //        webView.layoutIfNeeded()
+    //        webView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+    //    }
     
     
 }

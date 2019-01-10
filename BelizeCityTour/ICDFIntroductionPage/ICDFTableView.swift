@@ -13,10 +13,17 @@ enum ICDFTableViewCellId: String {
     case textAndImg = "TextAndImageTableViewCell"
 }
 
+protocol ICDFTableViewProtocol {
+    func goToICDFVideo(sender: UIImageView)
+}
 
 class ICDFTableView: UITableView {
-    var paragraphs: [ICDFIntrodutionParagraph]
+    var icdfTableViewDelegate: ICDFTableViewProtocol?
+    
     var headerView = TableHeaderView.init(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 140))
+    
+    var paragraphs: [ICDFIntrodutionParagraph]
+    
     init(paragraphs: [ICDFIntrodutionParagraph]) {
         self.paragraphs = paragraphs
         super.init(frame: .zero, style: .plain)
@@ -54,10 +61,14 @@ extension ICDFTableView: UITableViewDelegate, UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: ICDFTableViewCellId.textAndImg.rawValue, for: indexPath) as! TextAndImageTableViewCell
             let values = (paragraphs[indexPath.item].upperImgColor, paragraphs[indexPath.item].lowerImgColor, paragraphs[indexPath.item].image, paragraphs[indexPath.item].paragraphText)
             cell.setupValue(values: values)
+            if indexPath.item == 1{
+                
+                cell.paragraphView?.loadGIF(name: "TaiwanICDF")
+                cell.paragraphView?.delegate = self
+            }
             return cell
         }
     }
-    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.item {
@@ -73,9 +84,14 @@ extension ICDFTableView: UITableViewDelegate, UITableViewDataSource{
         return nil
     }
     
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 140
     }
     
+}
+
+extension ICDFTableView: ParagraphViewDelegate{
+    func goToICDFVideo(sender: UIImageView) {
+        icdfTableViewDelegate?.goToICDFVideo(sender: sender)
+    }
 }

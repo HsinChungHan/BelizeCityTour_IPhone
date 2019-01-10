@@ -18,7 +18,7 @@ extension String{
     
     func fetchPrefix(fromChar: Character) -> String?{
         guard let index = self.index(of: fromChar) else {return nil}
-        var subStr = self.prefix(upTo: index)
+        let subStr = self.prefix(upTo: index)
         let str = String(subStr)
         return str
     }

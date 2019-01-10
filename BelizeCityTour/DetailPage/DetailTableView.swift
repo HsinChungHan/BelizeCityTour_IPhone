@@ -22,9 +22,9 @@ class DetailTableView: UITableView {
     var detailTableViewDelegate: DetailTableViewDelegate?
     var place: Place
     var isStory = true
-    var tapWebsite = false
+    //    var tapWebsite = false
     let tableBackgroundImgView: UIImageView = {
-       let imv = UIImageView()
+        let imv = UIImageView()
         imv.contentMode = .scaleAspectFill
         return imv
     }()
@@ -41,7 +41,7 @@ class DetailTableView: UITableView {
         setupTableViewBackgroundView(backGroundViewHeight: HeightConstant.plcacImgView.rawValue)
         firstSectionHeaderView.segmentedControlView.delegate = self
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -102,9 +102,9 @@ extension DetailTableView: UITableViewDelegate, UITableViewDataSource{
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BasicTableViewCell
         cell.setupValues(place: place)
-        if let cell = cell as? InformationTableViewCell{
-            ((cell.informationViews[4]) as? InformationView)?.delegate = self
-        }
+        //        if let cell = cell as? InformationTableViewCell{
+        //            ((cell.informationViews[4]) as? InformationView)?.delegate = self
+        //        }
         return cell
     }
     
@@ -113,10 +113,10 @@ extension DetailTableView: UITableViewDelegate, UITableViewDataSource{
         case true: return 1030
         case false:
             if indexPath.item == 0{
-                if tapWebsite{
-                    return 320 + 500
-                }
-                return 320
+                //                if tapWebsite{
+                //                    return 320 + 500
+                //                }
+                return 280
                 
             }else{
                 return 550
@@ -159,20 +159,18 @@ extension DetailTableView: SegmentedControlViewDelegate{
     
 }
 
-
-extension DetailTableView: InformationViewDelegate{
-    func goToWebSite(sender: UIButton, url: URL) {
-        switch isStory {
-        case false:
-            tapWebsite = true
-            let indexPath = IndexPath(item: 0, section: 0)
-            reloadRows(at: [indexPath], with: .fade)
-            let cell = cellForRow(at: indexPath) as! InformationTableViewCell
-            cell.setupWebView(url: url)
-//            sender.setTitleColor(.black, for: .normal)
-//            sender.isEnabled = false
-        default:
-            tapWebsite = false
-        }
-    }
-}
+//
+//extension DetailTableView: InformationViewDelegate{
+//    func goToWebSite(sender: UIButton, url: URL) {
+//        switch isStory {
+//        case false:
+//            tapWebsite = true
+//            let indexPath = IndexPath(item: 0, section: 0)
+//            reloadRows(at: [indexPath], with: .fade)
+//            let cell = cellForRow(at: indexPath) as! InformationTableViewCell
+//            cell.setupWebView(url: url)
+//        default:
+//            tapWebsite = false
+//        }
+//    }
+//}

@@ -10,6 +10,7 @@ import UIKit
 
 protocol ProjectCollectionViewDelegate {
     func showProjectIntroductionView(projectIntroduction: ProjectIntroduction, currentIndex: IndexPath, projectIntroductions: [ProjectIntroduction])
+    func goToHOCVideo(sender: UIButton, url: URL)
 }
 
 enum ProjectCollectionViewArgument: String{
@@ -52,7 +53,12 @@ extension ProjectCollectionView: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCollectionViewArgument.projectCellId.rawValue, for: indexPath) as! ProjectIntroductionCell
+        
         cell.setupValue(projectIntroduction: projectIntroductions[indexPath.item])
+        if indexPath.item == 1{
+            cell.delegate = self
+            cell.setupLinkHOCVideoLink(linkText: " Click here to watch the introduction video!")
+        }
         return cell
     }
     
@@ -86,4 +92,12 @@ extension ProjectCollectionView: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+}
+
+extension ProjectCollectionView: ProjectIntroductionCellDelegate{
+    func goToHOCVideo(sender: UIButton, url: URL) {
+        projectCollectionViewDelegate?.goToHOCVideo(sender: sender, url: url)
+    }
+    
+    
 }

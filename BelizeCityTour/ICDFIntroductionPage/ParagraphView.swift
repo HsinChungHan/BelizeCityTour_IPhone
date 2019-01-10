@@ -8,8 +8,13 @@
 
 import UIKit
 
-class ParagraphView: UIView {
+protocol ParagraphViewDelegate {
+    func goToICDFVideo(sender: UIImageView)
+}
 
+class ParagraphView: UIView {
+    var delegate: ParagraphViewDelegate?
+    
     init(upperColor: UIColor, lowerColor: UIColor, image: UIImage) {
         super.init(frame: .zero)
         upperView.backgroundColor = upperColor
@@ -50,5 +55,15 @@ class ParagraphView: UIView {
         
         addSubview(imgView)
         imgView.anchor(top: topAnchor, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, topPadding: 20, bottomPadding: 20, leftPadding: 20, rightPadding: 20, width: 0, height: 0)
+    }
+    
+    public func loadGIF(name: String){
+        imgView.loadGif(name: name)
+        imgView.isUserInteractionEnabled = true
+        imgView.addGestureRecognizer(UITapGestureRecognizer.init(target: self, action: #selector(goToICDFVideo(sender:))))
+    }
+    
+     @objc func goToICDFVideo(sender: UIImageView){
+        delegate?.goToICDFVideo(sender: sender)
     }
 }

@@ -21,7 +21,7 @@ class TextAndImageTableViewCell: TextOnlyTableViewCell {
     }
     
     var paragraphView: ParagraphView?
-    var values: (upperColor: UIColor, lowerColor: UIColor, image: UIImage, paragraphText: String)?{
+    var values: (upperColor: UIColor, lowerColor: UIColor, image: UIImage?, paragraphText: String)?{
         didSet{
             paragraphView = ParagraphView.init(upperColor: (values?.upperColor)!, lowerColor: (values?.lowerColor)!, image: (values?.image)!)
             super.setupValue(paragraphText: values!.paragraphText, upperBGColor: values!.lowerColor, lowerBGColor: values!.upperColor)
@@ -40,9 +40,7 @@ class TextAndImageTableViewCell: TextOnlyTableViewCell {
         paragraphLabel.anchor(top: paragraphView.bottomAnchor, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, topPadding: 10, bottomPadding: 10, leftPadding: 10, rightPadding: 10, width: 0, height: 0)
     }
     
-    func setupValue(values: (upperColor: UIColor, lowerColor: UIColor, image: UIImage, paragraphText: String)){
+    func setupValue(values: (upperColor: UIColor, lowerColor: UIColor, image: UIImage?, paragraphText: String)){
         self.values = values
     }
-    
-    
 }

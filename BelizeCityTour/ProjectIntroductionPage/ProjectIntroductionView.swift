@@ -8,9 +8,9 @@
 
 import UIKit
 protocol ProjectIntroductionViewDelegate {
-    func goToHOCWebsite(sender: UIButton, destinationNavivc: UINavigationController)
+    func goToWebsite(sender: UIButton, destinationNavivc: UINavigationController)
+    func goToHOCVideo(sender: UIButton, url: URL)
 }
-
 
 class ProjectIntroductionView: UIView {
     var delegate: ProjectIntroductionViewDelegate?
@@ -42,7 +42,7 @@ class ProjectIntroductionView: UIView {
         return label
     }()
     
-    lazy var forwardButton: UIButton = {
+    lazy var lastPageButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.addTarget(self, action: #selector(goToLastCell(sender:)), for: .touchUpInside)
         btn.setImage(UIImage(named: "btn_back")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -55,7 +55,7 @@ class ProjectIntroductionView: UIView {
         collectionView.scrollToLastCell()
     }
     
-    lazy var nextButton: UIButton = {
+    lazy var nextPageButton: UIButton = {
         let btn = UIButton(type: .system)
         btn.addTarget(self, action: #selector(goToNextCell(sender:)), for: .touchUpInside)
         btn.setImage(UIImage(named: "btn_next")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -71,13 +71,44 @@ class ProjectIntroductionView: UIView {
         let btn = UIButton(type: .system)
         btn.addTarget(self, action: #selector(goToHOCWebsite(sender:)), for: .touchUpInside)
         btn.setImage(UIImage(named: "hocLogo")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.imageView?.contentMode = .scaleAspectFit
+
         return btn
     }()
     
     @objc func goToHOCWebsite(sender: UIButton){
         guard let url = URL(string: "http://tourism.gov.bz/hoc-project/") else {return}
         let naviVC = UINavigationController(rootViewController: WebViewController.init(url: url))
-        delegate?.goToHOCWebsite(sender: sender, destinationNavivc: naviVC)
+        delegate?.goToWebsite(sender: sender, destinationNavivc: naviVC)
+    }
+    
+    
+    lazy var cultureButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.addTarget(self, action: #selector(goToCultureWebsite(sender:)), for: .touchUpInside)
+        btn.setImage(UIImage(named: "cultureLogo")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.imageView?.contentMode = .scaleAspectFit
+        return btn
+    }()
+    
+    @objc func goToCultureWebsite(sender: UIButton){
+        guard let url = URL(string: "http://tourism.gov.bz") else {return}
+        let naviVC = UINavigationController(rootViewController: WebViewController.init(url: url))
+        delegate?.goToWebsite(sender: sender, destinationNavivc: naviVC)
+    }
+    
+    lazy var ICDFButton: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.addTarget(self, action: #selector(goToICDFWebsite(sender:)), for: .touchUpInside)
+        btn.setImage(UIImage(named: "ICDFShortLogo")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.imageView?.contentMode = .scaleAspectFit
+        return btn
+    }()
+    
+    @objc func goToICDFWebsite(sender: UIButton){
+        guard let url = URL(string: "http://www.icdf.org.tw/mp.asp?mp=2") else {return}
+        let naviVC = UINavigationController(rootViewController: WebViewController.init(url: url))
+        delegate?.goToWebsite(sender: sender, destinationNavivc: naviVC)
     }
     
     let collectionView = ProjectCollectionView()
@@ -86,31 +117,32 @@ class ProjectIntroductionView: UIView {
         collectionView.projectCollectionViewDelegate = self
         backgroundColor = UIColor.backgroundRiceColor.withAlphaComponent(0.7)
         addSubview(backgroundImgView)
-        addSubview(titleLabel)
-        addSubview(forwardButton)
-        addSubview(nextButton)
-        addSubview(collectionView)
         backgroundImgView.fullAnchor(superView: self)
         addSubview(titleLabel)
         titleLabel.anchor(top: topAnchor, bottom: nil, left: nil, right: nil, topPadding: 40, bottomPadding: 0, leftPadding: 0, rightPadding: 0, width: UIScreen.main.bounds.width * 3 / 4, height: 160)
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        titleLabel.setCorner(radius: 15)
         
         addSubview(collectionView)
         collectionView.anchor(top: titleLabel.bottomAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, topPadding: 20, bottomPadding: 0, leftPadding: 10, rightPadding: 10, width: 0, height: UIScreen.main.bounds.height/2)
         collectionView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
+        let stackView = UIStackView()
+        stackView.setupStackView(views: [cultureButton, hocButton, ICDFButton], axis: .horizontal, distribution: .fillEqually, spacing: 10)
+        addSubview(stackView)
+        stackView.anchor(top: collectionView.bottomAnchor, bottom: bottomAnchor, left: collectionView.leftAnchor, right: collectionView.rightAnchor, topPadding: -20, bottomPadding: 80, leftPadding: 0, rightPadding: 0, width: 0, height: 0)
+
+//        stackView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor).isActive = true
+//        addSubview(hocButton)
+//        hocButton.anchor(top: collectionView.bottomAnchor, bottom: nil, left: nil, right: collectionView.rightAnchor, topPadding: -80, bottomPadding: 0, leftPadding: 0, rightPadding: 20, width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 6)
         
-        addSubview(hocButton)
-        hocButton.anchor(top: collectionView.bottomAnchor, bottom: nil, left: nil, right: collectionView.rightAnchor, topPadding: 10, bottomPadding: 0, leftPadding: 0, rightPadding: 20, width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 6)
+        addSubview(lastPageButton)
+        lastPageButton.anchor(top: nil, bottom: nil, left: leftAnchor, right: nil, topPadding: 0, bottomPadding: 0, leftPadding: 30, rightPadding: 0, width: 50, height: 50)
+        lastPageButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        
-        addSubview(forwardButton)
-        forwardButton.anchor(top: nil, bottom: nil, left: leftAnchor, right: nil, topPadding: 0, bottomPadding: 0, leftPadding: 30, rightPadding: 0, width: 50, height: 50)
-        forwardButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-        addSubview(nextButton)
-        nextButton.anchor(top: nil, bottom: nil, left: nil, right: rightAnchor, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 30, width: 50, height: 50)
-        nextButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        addSubview(nextPageButton)
+        nextPageButton.anchor(top: nil, bottom: nil, left: nil, right: rightAnchor, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 30, width: 50, height: 50)
+        nextPageButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     
     init(projectIntroduction: ProjectIntroduction) {
@@ -128,18 +160,22 @@ class ProjectIntroductionView: UIView {
 
 
 extension ProjectIntroductionView: ProjectCollectionViewDelegate{
+    func goToHOCVideo(sender: UIButton, url: URL) {
+        delegate?.goToHOCVideo(sender: sender, url: url)
+    }
+    
     func showProjectIntroductionView(projectIntroduction: ProjectIntroduction, currentIndex: IndexPath, projectIntroductions: [ProjectIntroduction]) {
         UIView.animate(withDuration: 2.0, animations: {[weak self] in
             self?.titleLabel.alpha = 0.1
             self?.backgroundImgView.alpha = 0.1
             
             if currentIndex.item == 0{
-                self?.forwardButton.alpha = 0.0
+                self?.lastPageButton.alpha = 0.0
             }else if currentIndex.item == projectIntroductions.count - 1{
-                self?.nextButton.alpha = 0.0
+                self?.nextPageButton.alpha = 0.0
             }else{
-                self?.forwardButton.alpha = 1.0
-                self?.nextButton.alpha = 1.0
+                self?.lastPageButton.alpha = 1.0
+                self?.nextPageButton.alpha = 1.0
             }
             
         }) { (_) in
