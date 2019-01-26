@@ -44,8 +44,9 @@ class FirstSectionHeaderView: UIView {
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        titleLabel.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 3/5).isActive = true
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        titleLabel.sizeToFit()
+        titleLabel.adjustsFontSizeToFitWidth = true
         addSubview(segmentedControlView)
         segmentedControlView.anchor(top: titleLabel.bottomAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, topPadding: 5, bottomPadding: 5, leftPadding: 15, rightPadding: 15, width: 0, height: 0)
     }

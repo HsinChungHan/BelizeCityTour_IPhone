@@ -15,14 +15,24 @@ protocol BottomViewDelegate {
 
 class BottomView: UIView {
     var bottomViewDelegate: BottomViewDelegate?
-    var place: Place
+    fileprivate var place: Place!{
+        didSet{
+            titleLabe.text = place.englishName
+            subTitleLabel.text = place.openingTime
+        }
+    }
     
+    public func setupPlace(place: Place){
+        self.place = place
+    }
     init(place: Place) {
         self.place = place
         super.init(frame: .zero)
         titleLabe.text = place.englishName
         subTitleLabel.text = place.openingTime
-        setupViews()
+        layer.cornerRadius = 10.0
+        clipsToBounds = true
+//        setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -61,7 +71,7 @@ class BottomView: UIView {
     
     lazy var titleLabe: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.backgroundRiceColor
+        label.textColor = UIColor.darkBrownText
         label.font = UIFont.boldSystemFont(ofSize: 25)
         label.text = "MC Hot Dog"
         label.textAlignment = .left
@@ -72,7 +82,7 @@ class BottomView: UIView {
     
     lazy var subTitleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.backgroundRiceColor
+        label.textColor = UIColor.lightBrownText
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.text = "Mon-Sunday(Open all day)"
         label.textAlignment = .left
@@ -81,24 +91,37 @@ class BottomView: UIView {
     }()
     
     func setupViews() {
-        backgroundColor = UIColor.classicDarkGreen.withAlphaComponent(0.7)
+        backgroundColor = UIColor.lightSkinBackgroundColor.withAlphaComponent(0.8)
         setUI()
     }
 }
 
 extension BottomView{
     fileprivate func setUI(){
-        addSubview(detailButton)
-        detailButton.anchor(top: nil, bottom: bottomAnchor, left: nil, right: rightAnchor, topPadding: 0, bottomPadding: 20, leftPadding: 0, rightPadding: -10, width: 120, height: 40)
-        addSubview(nameImgView)
-        nameImgView.anchor(top: topAnchor, bottom: nil, left: leftAnchor, right: nil, topPadding: 10, bottomPadding: 0, leftPadding: 10, rightPadding: 0, width: 20, height: 20)
-        addSubview(timeImgView)
-        timeImgView.anchor(top: nameImgView.bottomAnchor, bottom: bottomAnchor, left: nameImgView.leftAnchor, right: nameImgView.rightAnchor, topPadding: 10, bottomPadding: 35, leftPadding: 0, rightPadding: 0, width: 0, height: 20)
+        let nameView = UIView()
+        let nameStackView = UIStackView.init(arrangedSubviews: [nameImgView, titleLabe])
+        nameStackView.axis = .horizontal
+        nameImgView.translatesAutoresizingMaskIntoConstraints = false
+        nameImgView.widthAnchor.constraint(equalToConstant: frame.height / 6).isActive = true
+        nameStackView.spacing = 10
+        nameView.addSubview(nameStackView)
+        nameStackView.fullAnchor(superView: nameView)
+
+        let timeView = UIView()
+        let timeStackView = UIStackView.init(arrangedSubviews: [timeImgView, subTitleLabel])
+        timeStackView.axis = .horizontal
+        timeImgView.translatesAutoresizingMaskIntoConstraints = false
+        timeImgView.widthAnchor.constraint(equalToConstant: frame.height / 6).isActive = true
+        timeStackView.spacing = 10
+        timeView.addSubview(timeStackView)
+        timeStackView.fullAnchor(superView: timeView)
         
-        addSubview(titleLabe)
-        
-        titleLabe.anchor(top: nameImgView.topAnchor, bottom: nil, left: nameImgView.rightAnchor, right: rightAnchor, topPadding: -5, bottomPadding: 0, leftPadding: 10, rightPadding: 0, width: 0, height: 30)
-        addSubview(subTitleLabel)
-        subTitleLabel.anchor(top: timeImgView.topAnchor, bottom: nil, left: titleLabe.leftAnchor, right: titleLabe.rightAnchor, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 0, width: 0, height: 30)
+        let stackView = UIStackView.init(arrangedSubviews: [nameView, timeView])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        addSubview(stackView)
+        stackView.fullAnchor(superView: self)
+        stackView.isLayoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = .init(top: 3, left: 10, bottom: 3, right: 10)
     }
 }

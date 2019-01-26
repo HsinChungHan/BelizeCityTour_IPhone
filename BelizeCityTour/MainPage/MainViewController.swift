@@ -34,11 +34,14 @@ extension MainViewController{
     fileprivate func setupMainView(){
         view.addSubview(mainView)
         mainView.fullAnchor(superView: view)
-        
     }
 }
 
 extension MainViewController: MainViewDelegate{
+    func goToDetailPage(destinationVC: UIViewController, bottomUpView: BottomDetailView, sender: UIButton) {
+        present(destinationVC, animated: true, completion: nil)
+    }
+    
     func goToCard(sender: UIButton, destinationNaviVC: UINavigationController) {
         present(destinationNaviVC, animated: true, completion: nil)
     }
@@ -62,6 +65,18 @@ extension MainViewController: GuideViewDelegate{
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -100,9 +115,9 @@ public enum PersonLocation{
     func location(frameWidth: CGFloat, frameHeight: CGFloat) -> (offsetX: CGFloat, offsetY: CGFloat){
         switch self {
         case .upper:
-            return (0,0)
+            return (60,60)
         case .lower:
-            return (-30, frameHeight - 80)
+            return (40, frameHeight - 20)
         case .righter:
             return (frameWidth - 30, 30)
         }

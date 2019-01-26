@@ -29,6 +29,7 @@ class ScrollingView: UIView {
             collectionView.reloadData()
             setupCurrentIndex(imgsCount: imgs.count)
             pageView.numberOfPages = imgs.count
+            addTimer()
         }
     }
     var timer: Timer?

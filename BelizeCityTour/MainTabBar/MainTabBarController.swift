@@ -7,12 +7,8 @@
 //
 
 import UIKit
+var mainTabBar: UITabBar? = nil
 class MainTabBarController: UITabBarController, TabBarControllerDelegate{
-    
-    
-    
-    
-    
 //    override var prefersStatusBarHidden: Bool {
 //        return true
 //    }
@@ -20,6 +16,7 @@ class MainTabBarController: UITabBarController, TabBarControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.tintColor = .brown
+        mainTabBar = tabBar
         setupViewControllers()
 //        setImagePosition(tabBar: tabBar, top: 6, left: 0, bottom: -6, right: 0)
 //        setTitlePosition(tabBar: tabBar, horizontal: -10, vertical: 10)

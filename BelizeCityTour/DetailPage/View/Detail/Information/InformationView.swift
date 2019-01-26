@@ -16,6 +16,10 @@ protocol InformationViewDelegate {
 
 class InformationView: UIView {
     var delegate: InformationViewDelegate?
+    convenience init(image: UIImage) {
+        self.init(image: image, title: "", subTitle: "", isWebsite: false)
+    }
+    
     init(image: UIImage, title: String, subTitle: String, isWebsite: Bool){
         super.init(frame: .zero)
         iconImgView.image = image
@@ -89,3 +93,4 @@ class InformationView: UIView {
         
     }
 }
+

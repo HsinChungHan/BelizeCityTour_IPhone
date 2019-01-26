@@ -9,13 +9,21 @@
 import UIKit
 
 class PopInformationView: BasicView {
-    var place: Place
-    var senderTag: Int
-    var bottomView: BottomView
-    init(place: Place, tag: Int){
+    var place: Place{
+        didSet{
+            var imgs = [UIImage]()
+            for imgStr in place.imgs{
+                imgs.append(UIImage(named: imgStr)!)
+            }
+            scrollingView.setupValue(imgs: imgs)
+        }
+    }
+//    var senderTag: Int
+//    var bottomView: BottomView
+    init(place: Place){
         self.place = place
-        self.senderTag = tag
-        self.bottomView = BottomView.init(place: place)
+//        self.senderTag = tag
+//        self.bottomView = BottomView.init(place: place)
         super.init(frame: .zero)
         var imgs = [UIImage]()
         for imgStr in place.imgs{
@@ -45,7 +53,7 @@ extension PopInformationView{
         scrollingView.fullAnchor(superView: self)
         scrollingView.layoutIfNeeded()
         
-        addSubview(bottomView)
-        bottomView.anchor(top: nil, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 0, width: 0, height: 100)
+//        addSubview(bottomView)
+//        bottomView.anchor(top: nil, bottom: bottomAnchor, left: leftAnchor, right: rightAnchor, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 0, width: 0, height: 100)
     }
 }

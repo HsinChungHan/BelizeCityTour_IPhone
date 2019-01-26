@@ -22,7 +22,6 @@ class GuideView: UIView {
     let secondDiretionView = DirectionView.init(clue: ClueConstant.tapMoreToDetailView.rawValue, arrow: .leftDirectionArrow)
     
     
-    
     lazy var personImgView: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: "Guides")
@@ -46,8 +45,10 @@ class GuideView: UIView {
         }
         
         personImgView.movAnimation(endView: sender, duration: 2.0, offsetX: -10, offSetY: -30) {[weak self] in
-            let popInformationView = PopInformationView(place: (self?.place)!, tag: (self?.place.tag)!)
-            popInformationView.bottomView.bottomViewDelegate = self
+//            let popInformationView = PopInformationView(place: (self?.place)!, tag: (self?.place.tag)!)
+            let popInformationView = PopInformationView(place: (self?.place)!)
+
+//            popInformationView.bottomView.bottomViewDelegate = self
             self?.addSubview(popInformationView)
             popInformationView.anchor(top: nil, bottom: self?.personImgView.topAnchor, left: nil, right: nil, topPadding: 0, bottomPadding: 10, leftPadding: 0, rightPadding: 0, width: 400, height: 400)
             popInformationView.setCorner(radius: 20)

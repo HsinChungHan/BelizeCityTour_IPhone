@@ -74,6 +74,7 @@
 		C06E3DB321DC8CCD00B9ED43 /* UIStackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06E3DAE21DC8CCD00B9ED43 /* UIStackViewExtension.swift */; };
 		C06E3DB621DC8D5F00B9ED43 /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06E3DB521DC8D5F00B9ED43 /* CardCollectionViewCell.swift */; };
 		C09CC91E21CE2DD80087B411 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09CC91D21CE2DD80087B411 /* AppDelegate.swift */; };
+		D11A0D2521ECD22D002DF116 /* BottomDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A0D2421ECD22D002DF116 /* BottomDetailView.swift */; };
 		D145780A21E7599700989B21 /* ICDFIntroductionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D145780321E7599700989B21 /* ICDFIntroductionViewController.swift */; };
 		D145780B21E7599700989B21 /* TextOnlyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D145780421E7599700989B21 /* TextOnlyTableViewCell.swift */; };
 		D145780C21E7599700989B21 /* ParagraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D145780521E7599700989B21 /* ParagraphView.swift */; };
@@ -163,6 +164,7 @@
 		C09CC91A21CE2DD80087B411 /* BelizeCityTour.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BelizeCityTour.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C09CC91D21CE2DD80087B411 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C09CC92721CE2DD90087B411 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D11A0D2421ECD22D002DF116 /* BottomDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomDetailView.swift; sourceTree = "<group>"; };
 		D145780321E7599700989B21 /* ICDFIntroductionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ICDFIntroductionViewController.swift; sourceTree = "<group>"; };
 		D145780421E7599700989B21 /* TextOnlyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextOnlyTableViewCell.swift; sourceTree = "<group>"; };
 		D145780521E7599700989B21 /* ParagraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParagraphView.swift; sourceTree = "<group>"; };
@@ -284,6 +286,7 @@
 				C06E3D2521D331EB00B9ED43 /* MainViewController.swift */,
 				C06E3D2E21D33BA500B9ED43 /* MainView.swift */,
 				C06E3D3021D33C9000B9ED43 /* PlaceButton.swift */,
+				D11A0D2321ECD20C002DF116 /* BottomDetailView */,
 				C068D71F21DCB30B003254B4 /* GuidePage */,
 				C06E3D5A21D4F6D500B9ED43 /* Marquee */,
 			);
@@ -315,13 +318,8 @@
 		C06E3D5D21D5E15400B9ED43 /* DetailPage */ = {
 			isa = PBXGroup;
 			children = (
-				C06E3D6C21D6283900B9ED43 /* FirstSectionHeaderView */,
-				C06E3D6D21D6285C00B9ED43 /* Story */,
-				C06E3D6E21D628FD00B9ED43 /* Information */,
-				C06E3D7521D652B400B9ED43 /* Map */,
-				C06E3D6221D60DAE00B9ED43 /* DetailViewController.swift */,
-				C06E3D6421D60E7E00B9ED43 /* DetailView.swift */,
-				C06E3D6621D60FB900B9ED43 /* DetailTableView.swift */,
+				D145782221E77E3900989B21 /* View */,
+				D145782121E77E2A00989B21 /* Controller */,
 			);
 			path = DetailPage;
 			sourceTree = "<group>";
@@ -365,13 +363,9 @@
 		C06E3D7C21D78F0C00B9ED43 /* ICDFIntroductionPage */ = {
 			isa = PBXGroup;
 			children = (
-				D145780821E7599700989B21 /* ICDFIntroductionParagraph.swift */,
-				D145780321E7599700989B21 /* ICDFIntroductionViewController.swift */,
-				D145780721E7599700989B21 /* ICDFTableView.swift */,
-				D145780521E7599700989B21 /* ParagraphView.swift */,
-				D145780621E7599700989B21 /* TableHeaderView.swift */,
-				D145780921E7599700989B21 /* TextAndImageTableViewCell.swift */,
-				D145780421E7599700989B21 /* TextOnlyTableViewCell.swift */,
+				D145782421E77EF600989B21 /* Model */,
+				D145782521E77EFC00989B21 /* Controller */,
+				D145782621E77F0400989B21 /* View */,
 			);
 			path = ICDFIntroductionPage;
 			sourceTree = "<group>";
@@ -379,11 +373,9 @@
 		C06E3D8921D8DDDB00B9ED43 /* ProjectIntroductionPage */ = {
 			isa = PBXGroup;
 			children = (
-				D145781621E759C100989B21 /* ProjectCollectionView.swift */,
-				D145781321E759C000989B21 /* ProjectIntroductionCell.swift */,
-				D145781521E759C100989B21 /* ProjectIntroductionView.swift */,
-				D145781421E759C100989B21 /* ProjectIntroductionViewController.swift */,
-				D145781221E759C000989B21 /* ProjuctIntroduction.swift */,
+				D145782721E77F1100989B21 /* View */,
+				D145782821E77F1700989B21 /* Controller */,
+				D145782921E77F1E00989B21 /* Model */,
 			);
 			path = ProjectIntroductionPage;
 			sourceTree = "<group>";
@@ -442,9 +434,108 @@
 				C06E3D5D21D5E15400B9ED43 /* DetailPage */,
 				C031D31A21CE30A100B563B0 /* Utilities */,
 				C031D31F21CE319B00B563B0 /* Resources */,
-				C06E3D9F21DB858E00B9ED43 /* WebViewController.swift */,
+				D145782A21E77F2E00989B21 /* WebView */,
 			);
 			path = BelizeCityTour;
+			sourceTree = "<group>";
+		};
+		D11A0D2321ECD20C002DF116 /* BottomDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				D11A0D2421ECD22D002DF116 /* BottomDetailView.swift */,
+			);
+			path = BottomDetailView;
+			sourceTree = "<group>";
+		};
+		D145782121E77E2A00989B21 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C06E3D6221D60DAE00B9ED43 /* DetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D145782221E77E3900989B21 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D145782321E77E4A00989B21 /* Detail */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D145782321E77E4A00989B21 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C06E3D6C21D6283900B9ED43 /* FirstSectionHeaderView */,
+				C06E3D6D21D6285C00B9ED43 /* Story */,
+				C06E3D6E21D628FD00B9ED43 /* Information */,
+				C06E3D7521D652B400B9ED43 /* Map */,
+				C06E3D6421D60E7E00B9ED43 /* DetailView.swift */,
+				C06E3D6621D60FB900B9ED43 /* DetailTableView.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		D145782421E77EF600989B21 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D145780821E7599700989B21 /* ICDFIntroductionParagraph.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D145782521E77EFC00989B21 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D145780321E7599700989B21 /* ICDFIntroductionViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D145782621E77F0400989B21 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D145780721E7599700989B21 /* ICDFTableView.swift */,
+				D145780521E7599700989B21 /* ParagraphView.swift */,
+				D145780621E7599700989B21 /* TableHeaderView.swift */,
+				D145780921E7599700989B21 /* TextAndImageTableViewCell.swift */,
+				D145780421E7599700989B21 /* TextOnlyTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D145782721E77F1100989B21 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D145781621E759C100989B21 /* ProjectCollectionView.swift */,
+				D145781321E759C000989B21 /* ProjectIntroductionCell.swift */,
+				D145781521E759C100989B21 /* ProjectIntroductionView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D145782821E77F1700989B21 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D145781421E759C100989B21 /* ProjectIntroductionViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D145782921E77F1E00989B21 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D145781221E759C000989B21 /* ProjuctIntroduction.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D145782A21E77F2E00989B21 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				C06E3D9F21DB858E00B9ED43 /* WebViewController.swift */,
+			);
+			path = WebView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,6 +623,7 @@
 				C031D30E21CE300100B563B0 /* BasicTableViewCell.swift in Sources */,
 				C06E3D9321DA052600B9ED43 /* UILabel_Extension.swift in Sources */,
 				C06E3D2D21D3340700B9ED43 /* Place.swift in Sources */,
+				D11A0D2521ECD22D002DF116 /* BottomDetailView.swift in Sources */,
 				C06E3DAF21DC8CCD00B9ED43 /* AnimatedLayer.swift in Sources */,
 				C031D2FD21CE2FF700B563B0 /* SlideRightTransitionAnimator.swift in Sources */,
 				C06E3D3321D47AFB00B9ED43 /* PopInformationView.swift in Sources */,

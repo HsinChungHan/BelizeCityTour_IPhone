@@ -55,9 +55,9 @@ extension ProjectCollectionView: UICollectionViewDelegate, UICollectionViewDataS
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectCollectionViewArgument.projectCellId.rawValue, for: indexPath) as! ProjectIntroductionCell
         
         cell.setupValue(projectIntroduction: projectIntroductions[indexPath.item])
+        cell.paragraphTextView.isSelectable = false
         if indexPath.item == 1{
-            cell.delegate = self
-            cell.setupLinkHOCVideoLink(linkText: " Click here to watch the introduction video!")
+            cell.setupLinkAttributedText()
         }
         return cell
     }
@@ -92,12 +92,4 @@ extension ProjectCollectionView: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-}
-
-extension ProjectCollectionView: ProjectIntroductionCellDelegate{
-    func goToHOCVideo(sender: UIButton, url: URL) {
-        projectCollectionViewDelegate?.goToHOCVideo(sender: sender, url: url)
-    }
-    
-    
 }

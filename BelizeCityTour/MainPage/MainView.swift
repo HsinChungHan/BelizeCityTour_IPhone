@@ -11,6 +11,7 @@ import UIKit
 protocol MainViewDelegate {
     func tapDetailButton(sender: UIButton, bottomView: UIView, place: Place)
     func goToCard(sender: UIButton, destinationNaviVC: UINavigationController)
+    func goToDetailPage(destinationVC: UIViewController, bottomUpView: BottomDetailView, sender: UIButton)
 }
 
 class MainView: BasicView {
@@ -19,12 +20,24 @@ class MainView: BasicView {
     var allPlaceButtons = [Int:(UIButton, Place)]()
     var currentTag: Int?
     
+    var bottomDetailView: BottomDetailView
+    
+    init() {
+        bottomDetailView = BottomDetailView.init(place: places[0])
+        super.init(frame: .zero)
+        bottomDetailView.bottomDetailViewDelegate = self
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     lazy var backgroundImgView: UIImageView = {
         let imv = UIImageView()
         imv.image = UIImage(named: "ShowRd")
         imv.contentMode = .scaleAspectFill
         imv.isUserInteractionEnabled = true
-        imv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissPopView)))
+        imv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(scrollBottomDetailView)))
         return imv
     }()
     
@@ -35,12 +48,37 @@ class MainView: BasicView {
         return imgView
     }()
     
-    @objc func dismissPopView(){
-        currentPlaceButton?.scaleAnimationRepeated(scaleX: 1.0, scaleY: 1.0)
-        currentPopInformationView?.removeFromSuperview()
-        currentPlaceButton = nil
-        currentPopInformationView = nil
-        
+    fileprivate func maximizedView() {
+        if bottomDetailView.isMinimized{
+            bottomDetailView.maximizedContainerView {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.layoutIfNeeded()
+                    mainTabBar!.transform = CGAffineTransform.init(translationX: 0, y: 200)
+                }, completion: nil)
+            }
+        }
+    }
+    
+    fileprivate func maximizedAndMinimizedView() {
+        if bottomDetailView.isMinimized{
+            bottomDetailView.maximizedContainerView {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.layoutIfNeeded()
+                    mainTabBar!.transform = CGAffineTransform.init(translationX: 0, y: 200)
+                }, completion: nil)
+            }
+        }else{
+            bottomDetailView.minimizedContainerView {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.layoutIfNeeded()
+                    mainTabBar!.transform = .identity
+                }, completion: nil)
+            }
+        }
+    }
+    
+    @objc func scrollBottomDetailView(){
+        maximizedAndMinimizedView()
     }
     
     lazy var goToCardVCButton: UIButton = {
@@ -57,11 +95,10 @@ class MainView: BasicView {
         delegate?.goToCard(sender: sender, destinationNaviVC: naviVC)
     }
     
-    var currentPopInformationView: PopInformationView?
     var currentPlaceButton: PlaceButton?
     
     public func setupPersonImageView() {
-        personImgView.frame = CGRect(x: UIScreen.main.bounds.width - 100, y: 40, width: 80, height: 80)
+        personImgView.frame = CGRect(x: UIScreen.main.bounds.width - 50, y: 40, width: 40, height: 40)
         addSubview(personImgView)
     }
     
@@ -77,29 +114,27 @@ class MainView: BasicView {
             placeBtn.delegate = self
         }
         
-        
-        
         for view in subviews{addSubview(view)}
-        setupGoToCardButton()
         setupPersonImageView()
+        insertSubview(bottomDetailView, belowSubview: mainTabBar!)
+        bottomDetailView.configureBottomDetailView(superView: self, height: UIScreen.main.bounds.height/2)
+        bottomDetailView.layoutIfNeeded()
+        bottomDetailView.setupViews()
     }
     
     fileprivate func setupGoToCardButton(){
         addSubview(goToCardVCButton)
         goToCardVCButton.anchor(top: topAnchor, bottom: nil, left: leftAnchor, right: nil
-            , topPadding: 20, bottomPadding: 0, leftPadding: 20, rightPadding: 0, width: 80, height: 80)
+            , topPadding: 20, bottomPadding: 0, leftPadding: 20, rightPadding: 0, width: 40, height: 40)
     }
 }
 
 
 extension MainView: PlaceButtonDelegate{
     func buttonTap(sender: PlaceButton, place: Place) {
-        currentPopInformationView?.removeFromSuperview()
+        bottomDetailView.setupPlace(place: place)
         if let currentTag = currentTag{
             allPlaceButtons[currentTag]!.0.scaleAnimationNoRepeated(scaleX: 1.0, scaleY: 1.0)
-//            if currentTag != sender.tag{
-//                currentPlaceButton?.isEnabled = true
-//            }
         }
         
         sender.scaleAnimationNoRepeated(scaleX: 1.5, scaleY: 1.5)
@@ -111,43 +146,22 @@ extension MainView: PlaceButtonDelegate{
         var offset: (offsetX: CGFloat, offsetY: CGFloat) = (0,0)
         switch sender.tag {
         case 0, 3, 12, 10:
-            offset = PersonLocation.upper.location(frameWidth: 135, frameHeight: 135)
+            offset = PersonLocation.upper.location(frameWidth: 65, frameHeight: 65)
         case 1, 8, 4, 11, 6:
-            offset = PersonLocation.lower.location(frameWidth: 135, frameHeight: 135)
+            offset = PersonLocation.lower.location(frameWidth: 65, frameHeight: 65)
         case 5, 9, 7:
-            offset = PersonLocation.righter.location(frameWidth: 135, frameHeight: 135)
+            offset = PersonLocation.righter.location(frameWidth: 65, frameHeight: 65)
         default:
             break
         }
         
         personImgView.movAnimation(endView: sender, duration: 2.0, offsetX: offset.offsetX, offSetY: offset.offsetY) {[weak self] in
-            self?.currentPopInformationView = PopInformationView(place: (self?.allPlaceButtons[sender.tag]!.1)!, tag: sender.tag)
-            self?.currentPopInformationView!.bottomView.bottomViewDelegate = self
-            var arrowOrientation: UIImage.Orientation
-            var currentInformationViewTopAnchor: NSLayoutYAxisAnchor? = nil
-            var currentInformationViewBottomAnchor: NSLayoutYAxisAnchor? = nil
-            switch sender.tag{
-            case 0, 3, 5, 9, 10, 12:
-                currentInformationViewTopAnchor = nil
-                currentInformationViewBottomAnchor = self!.personImgView.topAnchor
-                arrowOrientation = .down
-            default:
-                currentInformationViewTopAnchor = self!.personImgView.bottomAnchor
-                currentInformationViewBottomAnchor = nil
-                arrowOrientation = .up
-            }
-            self?.addSubview((self?.currentPopInformationView)!)
-            self?.currentPopInformationView!.anchor(top: currentInformationViewTopAnchor, bottom: currentInformationViewBottomAnchor, left: nil, right: nil, topPadding: 0, bottomPadding: 10, leftPadding: 0, rightPadding: 0, width: 400, height: 400)
-            self?.currentPopInformationView!.setCorner(radius: 20)
-            self?.currentPopInformationView!.centerXAnchor.constraint(equalTo: (self?.personImgView.centerXAnchor)!, constant: 60).isActive = true
-            self?.currentPopInformationView!.layoutIfNeeded()
-            self?.currentPopInformationView!.applyArrowDialogAppearanceWithOrientation(frame: (self?.currentPopInformationView!.bounds)!, arrowOrientation: arrowOrientation)
+            self?.maximizedView()
             dummyView.removeFromSuperview()
         }
         
         currentTag = sender.tag
         currentPlaceButton = sender
-//        currentPlaceButton?.isEnabled = false
     }
 }
 
@@ -155,6 +169,14 @@ extension MainView: PlaceButtonDelegate{
 extension MainView: BottomViewDelegate{
     func tapDetailButton(sender: UIButton, bottomView: UIView, place: Place) {
         delegate?.tapDetailButton(sender: sender, bottomView: bottomView, place: place)
+    }
+}
 
+extension MainView: BottomDetailViewProtocol{
+    func scrollDown(sender: UIButton) {
+        maximizedAndMinimizedView()
+    }
+    func goToDetailPage(destinationVC: UIViewController, bottomUpView: BottomDetailView, sender: UIButton) {
+        delegate?.goToDetailPage(destinationVC: destinationVC, bottomUpView: bottomUpView, sender: sender)
     }
 }

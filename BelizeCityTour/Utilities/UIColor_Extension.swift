@@ -53,6 +53,8 @@ extension UIColor{
     static let upOrange = UIColor.rgb(red: 247, green: 92, blue: 92)
     static let textOrange = UIColor.rgb(red: 247, green: 68, blue: 68)
     static let buttonUpGray = UIColor.rgb(red: 170, green: 170, blue: 170)
+    static let skinBackgroundColor = UIColor.rgb(red: 255, green: 223, blue: 196)
+    static let lightSkinBackgroundColor = UIColor.rgb(red: 255, green: 248, blue: 243)
     
     static let backgroundRiceColor = UIColor.rgb(red: 254, green: 242, blue: 219)
     
@@ -68,6 +70,9 @@ extension UIColor{
     
     static let heartRed = UIColor.rgb(red: 216, green: 74, blue: 32)
     
+    static let darkBrownText = UIColor.rgb(red: 132, green: 94, blue: 85)
+    static let lightBrownText = UIColor.rgb(red: 157, green: 117, blue: 107)
+    static let lightGrayText = UIColor.rgb(red: 109, green: 109, blue: 109)
     
     //for ICDF introduction page
     static let introductionTextColor = UIColor.rgb(red: 72, green: 54, blue: 31)

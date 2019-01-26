@@ -19,6 +19,7 @@ protocol DetailTableViewDelegate {
 }
 
 class DetailTableView: UITableView {
+    var currentCell: StoryTableViewCell?
     var detailTableViewDelegate: DetailTableViewDelegate?
     var place: Place
     var isStory = true
@@ -40,6 +41,8 @@ class DetailTableView: UITableView {
         dataSource = self
         setupTableViewBackgroundView(backGroundViewHeight: HeightConstant.plcacImgView.rawValue)
         firstSectionHeaderView.segmentedControlView.delegate = self
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -102,6 +105,7 @@ extension DetailTableView: UITableViewDelegate, UITableViewDataSource{
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! BasicTableViewCell
         cell.setupValues(place: place)
+        
         //        if let cell = cell as? InformationTableViewCell{
         //            ((cell.informationViews[4]) as? InformationView)?.delegate = self
         //        }
@@ -110,7 +114,7 @@ extension DetailTableView: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch isStory {
-        case true: return 1030
+        case true: return 1600
         case false:
             if indexPath.item == 0{
                 //                if tapWebsite{
@@ -155,8 +159,6 @@ extension DetailTableView: SegmentedControlViewDelegate{
         self.isStory = isStory
         reloadData()
     }
-    
-    
 }
 
 //

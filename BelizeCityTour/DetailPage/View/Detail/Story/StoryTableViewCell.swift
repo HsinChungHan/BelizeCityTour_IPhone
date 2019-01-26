@@ -15,11 +15,7 @@ class StoryTableViewCell: BasicTableViewCell {
             guard let place = place else {return}
             var lastView: StoryInformationView? = nil
             for index in 0 ... 2{
-                var viewType: ViewType
-                switch index % 2{
-                case 0: viewType = .imgLeft
-                default: viewType = .imgRight
-                }
+                let viewType: ViewType = .imgMiddle
                 let informationView = StoryInformationView.init(viewType: viewType, image: place.imgs[index], text: place.englishStorys[index])
                 setupInformationView(lastView: lastView, view: informationView)
                 lastView = informationView
@@ -38,9 +34,9 @@ extension StoryTableViewCell{
     func setupInformationView(lastView: StoryInformationView?, view: StoryInformationView){
         addSubview(view)
         if let lastView = lastView{
-            view.anchor(top: lastView.bottomAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, topPadding: 20, bottomPadding: 0, leftPadding: 20, rightPadding: 20, width: 0, height: 300)
+            view.anchor(top: lastView.bottomAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, topPadding: 20, bottomPadding: 0, leftPadding: 20, rightPadding: 20, width: 0, height: 500)
         }else{
-            view.anchor(top: topAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, topPadding: 20, bottomPadding: 0, leftPadding: 20, rightPadding: 20, width: 0, height: 300)
+            view.anchor(top: topAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, topPadding: 20, bottomPadding: 0, leftPadding: 20, rightPadding: 20, width: 0, height: 500)
         }
     }
 }

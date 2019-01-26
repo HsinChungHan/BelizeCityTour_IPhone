@@ -18,7 +18,7 @@ class PlaceButton: UIButton {
     
     init(index: Int, place: Place) {
         self.place = place
-        super.init(frame: CGRect(x: place.iconLocation.x , y: place.iconLocation.y, width: 135, height: 135))
+        super.init(frame: CGRect(x: place.iconLocation.x , y: place.iconLocation.y, width: 65, height: 65))
         tag = index
         imageView?.contentMode = .scaleAspectFit
         setImage(UIImage(named: place.iconImg)!.withRenderingMode(.alwaysOriginal), for: .normal)
