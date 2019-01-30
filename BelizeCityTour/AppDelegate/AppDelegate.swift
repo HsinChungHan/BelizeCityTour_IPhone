@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.rootViewController = MainTabBarController()
 //        window?.rootViewController = MainViewController()
         Thread.sleep(forTimeInterval: 1.5)
+        
         return true
     }
 

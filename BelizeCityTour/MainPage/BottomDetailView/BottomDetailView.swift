@@ -82,19 +82,23 @@ class BottomDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     public func setupViews(){
         let padding = frame.height/8/4
-        let stackView = UIStackView.init(arrangedSubviews: [scrollDownbutton, visitButton, informationView, placeImageView])
+        addSubview(scrollDownbutton)
+        scrollDownbutton.anchor(top: topAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 0, width: 0, height: padding * 2)
+        let stackView = UIStackView.init(arrangedSubviews: [visitButton, informationView, placeImageView])
         stackView.axis = .vertical
         stackView.spacing = padding
         addSubview(stackView)
-        stackView.fullAnchor(superView: self, topPadding: 10, bottomPadding: 10, leftPadding: 10, rightPadding: 10)
+        stackView.fullAnchor(superView: self, topPadding: padding * 2, bottomPadding: 10, leftPadding: 10, rightPadding: 10)
 //        stackView.isLayoutMarginsRelativeArrangement = true //加這行會自動抓到tabBar的位置
 //        stackView.layoutMargins = .init(top: 0, left: 10, bottom: 10, right: 10)
-        scrollDownbutton.translatesAutoresizingMaskIntoConstraints = false
-        scrollDownbutton.heightAnchor.constraint(equalToConstant: padding).isActive = true
+//        scrollDownbutton.translatesAutoresizingMaskIntoConstraints = false
+//        scrollDownbutton.heightAnchor.constraint(equalToConstant: padding).isActive = true
         visitButton.translatesAutoresizingMaskIntoConstraints = false
-        visitButton.heightAnchor.constraint(equalToConstant: frame.height/10).isActive = true
+//        visitButton.heightAnchor.constraint(equalToConstant: frame.height/10).isActive = true
+        visitButton.heightAnchor.constraint(equalToConstant: mainTabBar!.frame.height - padding - padding).isActive = true
         informationView.translatesAutoresizingMaskIntoConstraints = false
         informationView.heightAnchor.constraint(equalToConstant: frame.height * 2/10).isActive = true
         informationView.layoutIfNeeded()
@@ -103,9 +107,10 @@ class BottomDetailView: UIView {
     
     
     public func configureBottomDetailView(superView: UIView, height: CGFloat){
+        let padding = frame.height/8/4
         setBottomDetailViewBeginningAnchor(superView: superView, height: height)
 //        bottomDetailViewMinimizedTopAnchor = topAnchor.constraint(equalTo: mainTabBar!.topAnchor, constant: -mainTabBar!.frame.height - 25)
-        bottomDetailViewMinimizedTopAnchor = topAnchor.constraint(equalTo: superView.bottomAnchor, constant: -mainTabBar!.frame.height*2 - 25)
+        bottomDetailViewMinimizedTopAnchor = topAnchor.constraint(equalTo: superView.bottomAnchor, constant: -mainTabBar!.frame.height*2 - padding)
         bottomDetailViewMinimizedTopAnchor?.isActive = true
         bottomDetailViewMaximizedTopAnchor = topAnchor.constraint(equalTo: superView.centerYAnchor, constant: 0)
 

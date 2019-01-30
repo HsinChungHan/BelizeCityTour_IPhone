@@ -119,22 +119,23 @@ class ProjectIntroductionView: UIView {
         addSubview(backgroundImgView)
         backgroundImgView.fullAnchor(superView: self)
         addSubview(titleLabel)
-        titleLabel.anchor(top: topAnchor, bottom: nil, left: nil, right: nil, topPadding: 40, bottomPadding: 0, leftPadding: 0, rightPadding: 0, width: UIScreen.main.bounds.width * 3 / 4, height: 160)
+        titleLabel.anchor(top: topAnchor, bottom: nil, left: nil, right: nil, topPadding: 40, bottomPadding: 0, leftPadding: 0, rightPadding: 0, width: UIScreen.main.bounds.width * 3 / 4, height: UIScreen.main.bounds.height/10)
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         titleLabel.setCorner(radius: 15)
+        titleLabel.adjustsFontSizeToFitWidth = true
         
         addSubview(collectionView)
-        collectionView.anchor(top: titleLabel.bottomAnchor, bottom: nil, left: leftAnchor, right: rightAnchor, topPadding: 20, bottomPadding: 0, leftPadding: 10, rightPadding: 10, width: 0, height: UIScreen.main.bounds.height/2)
+        print("Height: ", UIScreen.main.bounds.height)
+        print("Width: ", UIScreen.main.bounds.width)
         collectionView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        collectionView.anchor(top: nil, bottom: nil, left: leftAnchor, right: rightAnchor, topPadding: 20, bottomPadding: 0, leftPadding: 10, rightPadding: 10, width: 0, height: UIScreen.main.bounds.height*3/5)
+        
         
         let stackView = UIStackView()
         stackView.setupStackView(views: [cultureButton, hocButton, ICDFButton], axis: .horizontal, distribution: .fillEqually, spacing: 10)
         addSubview(stackView)
-        stackView.anchor(top: collectionView.bottomAnchor, bottom: bottomAnchor, left: collectionView.leftAnchor, right: collectionView.rightAnchor, topPadding: -20, bottomPadding: 80, leftPadding: 0, rightPadding: 0, width: 0, height: 0)
+        stackView.anchor(top: collectionView.bottomAnchor, bottom: bottomAnchor, left: collectionView.leftAnchor, right: collectionView.rightAnchor, topPadding: 10, bottomPadding: (mainTabBar?.frame.height)! + 30, leftPadding: 0, rightPadding: 0, width: 0, height: 0)
 
-//        stackView.centerXAnchor.constraint(equalTo: collectionView.centerXAnchor).isActive = true
-//        addSubview(hocButton)
-//        hocButton.anchor(top: collectionView.bottomAnchor, bottom: nil, left: nil, right: collectionView.rightAnchor, topPadding: -80, bottomPadding: 0, leftPadding: 0, rightPadding: 20, width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 6)
         
         addSubview(lastPageButton)
         lastPageButton.anchor(top: nil, bottom: nil, left: leftAnchor, right: nil, topPadding: 0, bottomPadding: 0, leftPadding: 30, rightPadding: 0, width: 50, height: 50)

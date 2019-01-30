@@ -89,6 +89,7 @@
 		D145781C21E759C100989B21 /* ProjectCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D145781621E759C100989B21 /* ProjectCollectionView.swift */; };
 		D145781E21E75A0E00989B21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D145781D21E75A0E00989B21 /* Assets.xcassets */; };
 		D145782021E75A6200989B21 /* TaiwanICDF.gif in Resources */ = {isa = PBXBuildFile; fileRef = D145781F21E75A6200989B21 /* TaiwanICDF.gif */; };
+		D1EBF61D21FFFDA700414F9C /* CGRect_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EBF61C21FFFDA700414F9C /* CGRect_Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,6 +180,7 @@
 		D145781621E759C100989B21 /* ProjectCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCollectionView.swift; sourceTree = "<group>"; };
 		D145781D21E75A0E00989B21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D145781F21E75A6200989B21 /* TaiwanICDF.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TaiwanICDF.gif; sourceTree = "<group>"; };
+		D1EBF61C21FFFDA700414F9C /* CGRect_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect_Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 				C031D31421CE301900B563B0 /* CustomNavigationAnimationController.swift */,
 				C06E3D9221DA052600B9ED43 /* UILabel_Extension.swift */,
 				C06E3DA121DB886300B9ED43 /* UIVIewController_Extension.swift */,
+				D1EBF61C21FFFDA700414F9C /* CGRect_Extension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -623,6 +626,7 @@
 				C031D30E21CE300100B563B0 /* BasicTableViewCell.swift in Sources */,
 				C06E3D9321DA052600B9ED43 /* UILabel_Extension.swift in Sources */,
 				C06E3D2D21D3340700B9ED43 /* Place.swift in Sources */,
+				D1EBF61D21FFFDA700414F9C /* CGRect_Extension.swift in Sources */,
 				D11A0D2521ECD22D002DF116 /* BottomDetailView.swift in Sources */,
 				C06E3DAF21DC8CCD00B9ED43 /* AnimatedLayer.swift in Sources */,
 				C031D2FD21CE2FF700B563B0 /* SlideRightTransitionAnimator.swift in Sources */,
@@ -847,7 +851,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = coolApp.com.BelizeCityTour;
+				PRODUCT_BUNDLE_IDENTIFIER = coolApp.com.BelizeCityTourIPhone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -866,7 +870,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = coolApp.com.BelizeCityTour;
+				PRODUCT_BUNDLE_IDENTIFIER = coolApp.com.BelizeCityTourIPhone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;

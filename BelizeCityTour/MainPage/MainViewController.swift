@@ -23,6 +23,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.backgroundRiceColor
         setupMainView()
 //        view.addSubview(guideView)
 //        guideView.fullAnchor(superView: view)
@@ -33,7 +34,8 @@ class MainViewController: UIViewController {
 extension MainViewController{
     fileprivate func setupMainView(){
         view.addSubview(mainView)
-        mainView.fullAnchor(superView: view)
+        mainView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: view.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 0, width: 0, height: 0)
+//        mainView.fullAnchor(superView: view)
     }
 }
 
@@ -65,12 +67,6 @@ extension MainViewController: GuideViewDelegate{
     
     
 }
-
-
-
-
-
-
 
 
 

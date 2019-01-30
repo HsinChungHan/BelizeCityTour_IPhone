@@ -12,13 +12,16 @@ protocol PlaceButtonDelegate {
 }
 
 
+
+
 class PlaceButton: UIButton {
     var delegate: PlaceButtonDelegate?
     var place: Place
     
     init(index: Int, place: Place) {
         self.place = place
-        super.init(frame: CGRect(x: place.iconLocation.x , y: place.iconLocation.y, width: 65, height: 65))
+        let frame = CGRect(x: place.iconLocation.x , y: place.iconLocation.y, width: 65, height: 65).autoSizingIconLocation()
+        super.init(frame: frame)
         tag = index
         imageView?.contentMode = .scaleAspectFit
         setImage(UIImage(named: place.iconImg)!.withRenderingMode(.alwaysOriginal), for: .normal)

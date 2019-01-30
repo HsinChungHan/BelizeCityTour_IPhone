@@ -12,11 +12,11 @@ class ProjectIntroductionCell: UICollectionViewCell {
     public func setupLinkAttributedText() {
         paragraphTextView.isSelectable = true
         let paragraphTextAttributedStr = NSMutableAttributedString.init(string: (projectIntroduction?.paragraphText)!, attributes: [
-            NSAttributedString.Key.font : UIFont.init(name: "Centaur", size: 30)!,
+            NSAttributedString.Key.font : UIFont.init(name: "Centaur", size: 25)!,
             NSAttributedString.Key.foregroundColor: UIColor.white
             ])
         let linkAttributedStr = NSMutableAttributedString.init(string: "  Click here to watch the introduction video!", attributes: [
-            NSAttributedString.Key.font : UIFont.init(name: "Centaur", size: 30)!,
+            NSAttributedString.Key.font : UIFont.init(name: "Centaur", size: 25)!,
             NSAttributedString.Key.foregroundColor : UIColor.lightBlue
             ])
         
@@ -37,7 +37,7 @@ class ProjectIntroductionCell: UICollectionViewCell {
     
     let paragraphTextView: UITextView = {
         let tv = UITextView()
-        tv.font = UIFont.init(name: "Centaur", size: 30)
+        tv.font = UIFont.init(name: "Centaur", size: 25)
         tv.textColor = .white
         tv.isEditable = false
         tv.textAlignment = .left

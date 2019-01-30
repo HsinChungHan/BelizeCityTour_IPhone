@@ -72,8 +72,8 @@ extension ICDFTableView: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.item {
-        case 0: return 800
-        default: return 1200
+        case 0: return 700
+        default: return 1250
         }
     }
     

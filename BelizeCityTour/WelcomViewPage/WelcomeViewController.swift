@@ -21,8 +21,8 @@ class WelcomeViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSkipButtonView()
         setupPlayerView()
+        setupSkipButtonView()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -41,7 +41,8 @@ extension WelcomeViewController{
         let videoURL = Media.introVideo.choosedUrl
         player = AVPlayer(url: videoURL)
         let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 800)
+        playerLayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        
         view.layer.addSublayer(playerLayer)
         player.play()
         NotificationCenter.default.addObserver(self,
