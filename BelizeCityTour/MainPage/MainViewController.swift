@@ -25,8 +25,20 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundRiceColor
         setupMainView()
-//        view.addSubview(guideView)
-//        guideView.fullAnchor(superView: view)
+    }
+    
+    fileprivate func setGuideView(){
+        view.addSubview(guideView)
+        guideView.fullAnchor(superView: view)
+    }
+    
+    fileprivate func setHadOpened(){
+        guard let _ = DB[.hadOpened] as? Bool else {
+            DB.set(true, forKey: "hadOpened")
+            setGuideView()
+            return
+        }
+        mainView.setupPersonImageView()
     }
 
 }

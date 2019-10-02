@@ -34,7 +34,6 @@
 		C031D31721CE301900B563B0 /* CustomInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031D31521CE301900B563B0 /* CustomInteractionController.swift */; };
 		C031D31C21CE313F00B563B0 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C031D31B21CE313F00B563B0 /* backgroundMusic.mp3 */; };
 		C031D32221CE328B00B563B0 /* SkipButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C031D32121CE328A00B563B0 /* SkipButtonView.swift */; };
-		C031D32421CE36D900B563B0 /* intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C031D32321CE36D800B563B0 /* intro.mp4 */; };
 		C068D71C21DC9FBC003254B4 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C068D71B21DC9FBC003254B4 /* GuideView.swift */; };
 		C068D71E21DCA97F003254B4 /* DirectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C068D71D21DCA97F003254B4 /* DirectionView.swift */; };
 		C068D72721DCBCB0003254B4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C068D72921DCBCB0003254B4 /* LaunchScreen.storyboard */; };
@@ -89,6 +88,8 @@
 		D145781C21E759C100989B21 /* ProjectCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D145781621E759C100989B21 /* ProjectCollectionView.swift */; };
 		D145781E21E75A0E00989B21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D145781D21E75A0E00989B21 /* Assets.xcassets */; };
 		D145782021E75A6200989B21 /* TaiwanICDF.gif in Resources */ = {isa = PBXBuildFile; fileRef = D145781F21E75A6200989B21 /* TaiwanICDF.gif */; };
+		D1A98B9C2301915C007B7506 /* intro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D1A98B9B2301915C007B7506 /* intro.mp4 */; };
+		D1B99D8D2289CF6F0087DB2A /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99D8C2289CF6F0087DB2A /* UserDefault.swift */; };
 		D1EBF61D21FFFDA700414F9C /* CGRect_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EBF61C21FFFDA700414F9C /* CGRect_Extension.swift */; };
 /* End PBXBuildFile section */
 
@@ -120,7 +121,6 @@
 		C031D31521CE301900B563B0 /* CustomInteractionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInteractionController.swift; sourceTree = "<group>"; };
 		C031D31B21CE313F00B563B0 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		C031D32121CE328A00B563B0 /* SkipButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipButtonView.swift; sourceTree = "<group>"; };
-		C031D32321CE36D800B563B0 /* intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro.mp4; sourceTree = "<group>"; };
 		C068D71B21DC9FBC003254B4 /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		C068D71D21DCA97F003254B4 /* DirectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionView.swift; sourceTree = "<group>"; };
 		C068D72821DCBCB0003254B4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -180,6 +180,8 @@
 		D145781621E759C100989B21 /* ProjectCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectCollectionView.swift; sourceTree = "<group>"; };
 		D145781D21E75A0E00989B21 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D145781F21E75A6200989B21 /* TaiwanICDF.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TaiwanICDF.gif; sourceTree = "<group>"; };
+		D1A98B9B2301915C007B7506 /* intro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = intro.mp4; sourceTree = "<group>"; };
+		D1B99D8C2289CF6F0087DB2A /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		D1EBF61C21FFFDA700414F9C /* CGRect_Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect_Extension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +224,7 @@
 				C06E3D9221DA052600B9ED43 /* UILabel_Extension.swift */,
 				C06E3DA121DB886300B9ED43 /* UIVIewController_Extension.swift */,
 				D1EBF61C21FFFDA700414F9C /* CGRect_Extension.swift */,
+				D1B99D8C2289CF6F0087DB2A /* UserDefault.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -246,8 +249,8 @@
 		C031D31F21CE319B00B563B0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D1A98B9B2301915C007B7506 /* intro.mp4 */,
 				C06E3D9621DA18E000B9ED43 /* Fonts */,
-				C031D32321CE36D800B563B0 /* intro.mp4 */,
 				D145781F21E75A6200989B21 /* TaiwanICDF.gif */,
 				D145781D21E75A0E00989B21 /* Assets.xcassets */,
 				C031D31B21CE313F00B563B0 /* backgroundMusic.mp3 */,
@@ -600,7 +603,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C031D32421CE36D900B563B0 /* intro.mp4 in Resources */,
 				C06E3D9A21DA1AF600B9ED43 /* CENTAUR.ttf in Resources */,
 				D145782021E75A6200989B21 /* TaiwanICDF.gif in Resources */,
 				C06E3D9821DA18FD00B9ED43 /* VINERITC.TTF in Resources */,
@@ -611,6 +613,7 @@
 				C06E3D2B21D3340700B9ED43 /* AllPlaces.json in Resources */,
 				C06E3D2C21D3340700B9ED43 /* BelizeCulture.json in Resources */,
 				C06E3D9E21DA9D8500B9ED43 /* FranklinGothic-Demi.TTF in Resources */,
+				D1A98B9C2301915C007B7506 /* intro.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +686,7 @@
 				C06E3D7021D6296100B9ED43 /* InformationTableViewCell.swift in Sources */,
 				D145781821E759C100989B21 /* ProjuctIntroduction.swift in Sources */,
 				C031D31721CE301900B563B0 /* CustomInteractionController.swift in Sources */,
+				D1B99D8D2289CF6F0087DB2A /* UserDefault.swift in Sources */,
 				C06E3D3B21D482C500B9ED43 /* ScrollingView.swift in Sources */,
 				C06E3D6521D60E7E00B9ED43 /* DetailView.swift in Sources */,
 				C031D2FF21CE2FF700B563B0 /* SlideLeftTransitionAnimator.swift in Sources */,

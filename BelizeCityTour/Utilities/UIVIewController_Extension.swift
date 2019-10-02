@@ -28,4 +28,13 @@ extension UIViewController{
         view.addSubview(lightBlueView)
         lightBlueView.anchor(top: view.topAnchor, bottom: nil, left: view.leftAnchor, right: view.rightAnchor, topPadding: 0, bottomPadding: 0, leftPadding: 0, rightPadding: 0, width: 0, height: 150)
     }
+    
+    func orOperation(left: Bool, right: @autoclosure () -> Bool) -> Bool{
+        if left{
+            return left
+        }else{
+            return right()
+        }
+    }
 }
+
